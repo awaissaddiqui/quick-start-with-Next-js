@@ -1,8 +1,9 @@
 import NotFoundPage from "@/app/not-found";
+export const dynamic = 'force-dynamic';
 
 export default async function ProductsDetailPage({ params }: { params: { id: string } }) {
     const id = await params.id;
-    const resp = await fetch('http://localhost:3000/api/products/' + id);
+    const resp = await fetch(process.env.NEXT_PUBLIC_URL + '/api/products/' + id);
     const product = await resp.json();
 
     if (!product) {

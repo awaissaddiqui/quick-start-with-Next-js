@@ -1,12 +1,14 @@
 import ProductList from "../ProductList";
-// import { products } from "../product-data";
+export const dynamic = 'force-dynamic';
+
 export default async function ProductPage() {
-    const response = await fetch('http://localhost:3000/api/products', {
+    console.log(process.env.NEXT_PUBLIC_URL);
+    const response = await fetch(process.env.NEXT_PUBLIC_URL + '/api/products', {
         cache: 'no-cache',
     });
     const products = await response.json();
 
-    const response2 = await fetch('http://localhost:3000/api/users/2/cart', {
+    const response2 = await fetch(process.env.NEXT_PUBLIC_URL + '/api/users/2/cart', {
         cache: 'no-cache',
     });
     const cartProducts = await response2.json();

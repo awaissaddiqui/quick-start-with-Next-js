@@ -9,7 +9,8 @@ type Params = {
 
 export async function GET(request: NextRequest, { params }: { params: Params }) {
     const { db } = await ConnectToDb();
-    const product = await db.collection('products').find({ id: params.id }).toArray();
+    const id = await params.id;
+    const product = await db.collection('products').find({ id: id }).toArray();
     if (!product) {
         return new Response("Product not found", {
             status: 404

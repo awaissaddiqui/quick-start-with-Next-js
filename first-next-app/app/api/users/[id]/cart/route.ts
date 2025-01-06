@@ -17,9 +17,10 @@ const cart: ShoppingCart = {
 export async function GET(request: NextRequest, { params }: { params: Params }) {
     const userId = await params.id;
     const { db } = await ConnectToDb();
+
     const cartShopping = await db.collection('carts').find({ userId }).toArray();
 
-
+    console.log(cartShopping);
     if (!cartShopping) {
         return new Response(JSON.stringify([]), {
             status: 200,
